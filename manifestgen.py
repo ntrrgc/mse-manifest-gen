@@ -23,11 +23,12 @@ def generate_manifest(file_path):
 
     media_segments = parser.find_media_segments(FileByteReader(open(file_path, "rb")))
     manifest = {
+        "url": file_path,
         "init_segment_size": media_segments[0].offset,
         "media_segments": media_segments,
     }
 
-    manifest_path = file_path + ".manifest.json"
+    manifest_path = file_path + "-manifest.json"
     with open(manifest_path, "w") as f:
         f.write(jsonify(manifest))
 

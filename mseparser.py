@@ -38,4 +38,4 @@ class CustomizableJsonEncoder(json.JSONEncoder):
 
 
 def jsonify(thing):
-    return json.dumps(thing, cls=CustomizableJsonEncoder, indent=2)
+    return json.dumps(thing, cls=CustomizableJsonEncoder, indent=4)

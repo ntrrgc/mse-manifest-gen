@@ -12,30 +12,32 @@ Usage:
 
 Example of generated manifest:
 
-```bash
+```json
 {
-  "init_segment_size": 635,
-  "media_segments": [
-    {
-      "offset": 635,
-      "size": 125412,
-      "time": 0.0
-    },
-    {
-      "offset": 126047,
-      "size": 129504,
-      "time": 5.005
-    },
-    {
-      "offset": 255551,
-      "size": 137000,
-      "time": 10.01
-    },
-    {
-      "offset": 392551,
-      "size": 137099,
-      "time": 15.015
-    }
-  ]
+    "url": "webm/golf-v-500k-320x180.webm",
+    "type": "video/webm; codecs=\"vp9\"",
+    "init_segment_size": 636,
+    "media_segments": [
+        {
+            "offset": 636,
+            "size": 282297,
+            "time": 0.0
+        },
+        {
+            "offset": 282933,
+            "size": 320201,
+            "time": 5.005
+        },
+        {
+            "offset": 603134,
+            "size": 333700,
+            "time": 10.01
+        },
+        {
+            "offset": 936834,
+            "size": 316274,
+            "time": 15.015
+        }
+    ]
 }
 ```
