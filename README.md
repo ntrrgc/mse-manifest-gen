@@ -1,6 +1,6 @@
-# mse-manifest-gen
+## manifestgen.py
 
-Receives MP4 and WebM files and generates a simple JSON file for each (manifest) with a list of the media segments they contain, including their offsets and start times.
+Receives MP4 and WebM MediaSource Extensions ByteStream files and generates a simple JSON file for each (manifest) with a list of the media segments they contain, including their offsets and start times.
 
 For use mostly in tests, where using a more complex manifest format is undesirable. Notably there is no support for multi-track files.  
 
@@ -40,4 +40,34 @@ Example of generated manifest:
         }
     ]
 }
+```
+
+## segmentsplit.py
+
+Receives MP4 and WebM MediaSource Extensions ByteStream files and extracts them into little segment files. The concatenation of these files gives back the original file.
+
+These files are very useful when doing tests in the command line, for instance:
+
+```bash
+$ ./segmentsplit.py --basedir segments high.webm low.webm
+$ tree segments
+segments/
+├── high.webm
+│   ├── init.webm
+│   ├── media1.webm
+│   ├── media2.webm
+│   ├── media3.webm
+│   ├── media4.webm
+│   └── media5.webm
+├── low.webm
+│   ├── init.webm
+│   ├── media1.webm
+│   ├── media2.webm
+│   ├── media3.webm
+│   ├── media4.webm
+│   └── media5.webm
+└── golf-v-*.webm
+
+2 directories, 12 files
+$ gst-play-1.0 <(cat segments/low.webm/{init,media{1,2}}.webm segments/high.webm{init,media{3..5}}.webm)
 ```
