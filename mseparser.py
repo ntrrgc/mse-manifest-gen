@@ -20,7 +20,7 @@ class MediaSegment:
         return {
             "offset": self.offset,
             "size": self.size,
-            "time": float(self.time)
+            "timestamp": float(self.time)
         }
 
 
