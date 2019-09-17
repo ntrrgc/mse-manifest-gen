@@ -204,9 +204,10 @@ class TrackRunBox:
             self.full_box.reader.skip(4)
         if tr_flags & TRFlags.SAMPLE_FLAGS_PRESENT:
             self.full_box.reader.skip(4)
-        if tr_flags & TRFlags.SAMPLE_DURATION_PRESENT:
-            self.full_box.reader.skip(4)
-        self.first_sample_composition_time_offset = parse_signed_big_endian_number(self.full_box.reader.read(4))
+        if tr_flags & TRFlags.SAMPLE_COMPOSITION_TIME_OFFSETS_PRESENT:
+            self.first_sample_composition_time_offset = parse_signed_big_endian_number(self.full_box.reader.read(4))
+        else:
+            self.first_sample_composition_time_offset = 0
 
 
 def iter_boxes(reader: ByteReader, rewind: bool = False):
